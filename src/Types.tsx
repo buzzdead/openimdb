@@ -5,6 +5,8 @@ export interface IMovie {
     Poster: string
     Type: string
     imdbID: string
+    imdbRating: number
+    imdbVotes: number
     
 }
 
@@ -16,6 +18,7 @@ export interface IMovieModalList {
   Poster: string
   Type: string
   imdbID: string
+  imdbRating: number
   }[]
 }
 
@@ -37,5 +40,7 @@ export interface IMovieList {
   Poster: string
   Type: string
   imdbID: string
+  imdbRating: number
+  imdbVotes: number
   }[]
 }

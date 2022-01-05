@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IMovieList, IMovieModal } from "../Types";
 
-let sorted = { Title: false, Year: false, Type: false, Metascore: false };
+let sorted = { Title: false, Year: false, Type: false, imdbRating: false };
 
 interface Props {
   movies: IMovieList["movies"];
@@ -18,7 +18,7 @@ const [movieModal, setMovieModal] = useState<IMovieModal>();
 
   const handleChange = (e: any) => {
     let sortedMovies;
-    let type: "Title" | "Year" | "Type" | "Metascore" = e.target.id;
+    let type: "Title" | "Year" | "Type" | "imdbRating" = e.target.id;
     if (sorted[type]) {
       sortedMovies = movies.sort((a, b) => {
         if (a[type] > b[type]) {
@@ -60,7 +60,7 @@ const [movieModal, setMovieModal] = useState<IMovieModal>();
           <td onMouseLeave={() => handleClick(undefined)} onMouseEnter={() => handleClick(movie)}>{movie.Title}</td>
           <td>{movie.Year}</td>
           <td>{movie.Type}</td>
-          <td>{movie.Metascore}</td>
+          <td>{movie.imdbRating}/10 &nbsp;&nbsp;<span>from {movie.imdbVotes} users</span></td>
         </tr>
       );
     });
@@ -81,8 +81,8 @@ const [movieModal, setMovieModal] = useState<IMovieModal>();
           <th id="Type" onClick={handleChange}>
             Type &#x21f5;
           </th>
-          <th id="Metascore" onClick={handleChange}>
-            Metascore &#x21f5;
+          <th id="imdbRating" onClick={handleChange}>
+            imdbRating &#x21f5;
           </th>
         </tr>
         {renderMovieList()}
