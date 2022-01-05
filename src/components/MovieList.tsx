@@ -1,5 +1,5 @@
-import React from "react";
-import { IMovieList } from "../Types";
+import React, { useState } from "react";
+import { IMovieList, IMovieModal } from "../Types";
 
 let sorted = { Title: false, Year: false, Type: false, Metascore: false };
 
@@ -9,6 +9,13 @@ interface Props {
 }
 
 const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
+
+const handleClick = (e: any) => {
+  setMovieModal(e as IMovieModal)
+}
+
+const [movieModal, setMovieModal] = useState<IMovieModal>();
+
   const handleChange = (e: any) => {
     let sortedMovies;
     let type: "Title" | "Year" | "Type" | "Metascore" = e.target.id;
@@ -50,7 +57,7 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
             }
             alt=""
           ></img>
-          <td>{movie.Title}</td>
+          <td onMouseLeave={() => handleClick(undefined)} onMouseEnter={() => handleClick(movie)}>{movie.Title}</td>
           <td>{movie.Year}</td>
           <td>{movie.Type}</td>
           <td>{movie.Metascore}</td>
@@ -60,6 +67,8 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
   };
   return (
     <div>
+      {!movieModal && <h1 className="modal">Modal</h1>}
+      {movieModal && <h1 className="modal">{movieModal.Title}</h1>}
       <table>
         <tr>
           <th></th>
