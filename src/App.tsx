@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import MovieList from './components/MovieList';
 import SearchTerm from './components/SearchTerm';
@@ -8,6 +8,7 @@ function App() {
 
   const [movies, setMovies] = useState<IMovieList["movies"]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+
   const url = `http://www.omdbapi.com/?apikey=6d684c9&s=${searchTerm}`
 
   const getMovie = async () => {
@@ -22,9 +23,12 @@ function App() {
           const response = await fetch(`http://www.omdbapi.com/?i=${movie.imdbID}&apikey=6d684c9`)
           .then(response => response.json())
           const movieRes = response as IMovie
-          // Should probably move this to a utility const\function (some movies don't have a metascore)
-          if (movieRes.Metascore.toString() == "N/A") 
-            movieRes.Metascore = 0
+          // Should probably move this to a utility const\function (some movies don't have a rating)
+       
+          if (movieRes.imdbRating.toString() === "N/A") 
+            movieRes.imdbRating = 0
+          if (movieRes.imdbVotes.toString() === "N/A")
+            movieRes.imdbVotes = 0
           return movieRes
         })
         // Waits until all promises are done and then updates the movie state.
@@ -38,15 +42,14 @@ function App() {
      return true;
   }
 
-
   useEffect(() => {
     getMovie();
   }, [searchTerm]);
 
   return (
     <div className="App">
-       <MovieList movies={movies} setMovies={setMovies} />
        <SearchTerm searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+       <MovieList movies={movies} setMovies={setMovies} />
     </div>
   );
 }

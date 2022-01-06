@@ -5,7 +5,31 @@ export interface IMovie {
     Poster: string
     Type: string
     imdbID: string
+    imdbRating: number
+    imdbVotes: number
     
+}
+
+export interface IMovieModalList {
+  modal: {
+  Title: string
+  Metascore: number
+  Year: number
+  Poster: string
+  Type: string
+  imdbID: string
+  imdbRating: number
+  }[]
+}
+
+export interface IMovieModal {
+  Title: string
+  Metascore: number
+  Year: number
+  Poster: string
+  Type: string
+  imdbID: string
+  
 }
 
 export interface IMovieList {
@@ -16,5 +40,7 @@ export interface IMovieList {
   Poster: string
   Type: string
   imdbID: string
+  imdbRating: number
+  imdbVotes: number
   }[]
 }

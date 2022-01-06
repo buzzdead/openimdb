@@ -21,13 +21,14 @@ const SearchTerm: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
   };
 
   return (
-    <>
+    <div className="search-box">
+      Search here &nbsp;&nbsp;
       <input
         type="text"
         value={text}
         onChange={(event) => handleChange(event)}
       />
-    </>
+    </div>
   );
 };
 
