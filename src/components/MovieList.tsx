@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IMovieList, IMovieModal } from "../Types";
 
 let sorted = { Title: false, Year: false, Type: false, imdbRating: false };
-const filters = ["movie", "game", "series"]
+const filters = ["movie", "game", "series"];
 
 interface Props {
   movies: IMovieList["movies"];
@@ -10,17 +10,14 @@ interface Props {
 }
 
 const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
+  const [movieModal, setMovieModal] = useState<IMovieModal>();
+  const [filter, setFilter] = useState(new Array(filters.length).fill(true));
 
-const handleMouseOver = (e: any) => {
-  setMovieModal(e as IMovieModal)
-}
+  const handleMouseOver = (e: any) => {
+    setMovieModal(e as IMovieModal);
+  };
 
-const [movieModal, setMovieModal] = useState<IMovieModal>();
-const [filter, setFilter] = useState(
-  new Array(filters.length).fill(true)
-);
-
-  const onClick = (e: any) => {
+  const handleOnClick = (e: any) => {
     let sortedMovies;
     let type: "Title" | "Year" | "Type" | "imdbRating" = e.target.id;
     if (sorted[type]) {
@@ -53,17 +50,18 @@ const [filter, setFilter] = useState(
       index === pos ? !item : item
     );
     setFilter(updatedCheckedState);
-   }
+  };
 
   const renderMovieList = (): JSX.Element[] => {
-    let newFilters: string[] = []
+
+    // Haven't refactored it, but basically filters out movies into a new array before rendering the table.
+    let newFilters: string[] = [];
     filters.forEach((ele, id) => {
-      if (filter[id]) newFilters.push(ele)
-    })
+      if (filter[id]) newFilters.push(ele);
+    });
     const filtered = movies.filter((ele) => {
-      if(newFilters.includes(ele.Type))
-        return ele
-    })
+      if (newFilters.includes(ele.Type)) return ele;
+    });
     return filtered.map((movie, key) => {
       return (
         <tr key={key}>
@@ -76,10 +74,18 @@ const [filter, setFilter] = useState(
             }
             alt=""
           ></img>
-          <td onMouseLeave={() => handleMouseOver(undefined)} onMouseEnter={() => handleMouseOver(movie)}>{movie.Title}</td>
+          <td
+            onMouseLeave={() => handleMouseOver(undefined)}
+            onMouseEnter={() => handleMouseOver(movie)}
+          >
+            {movie.Title}
+          </td>
           <td>{movie.Year}</td>
           <td>{movie.Type}</td>
-          <td><span id="rating">{movie.imdbRating}/10</span> &nbsp;&nbsp;<span>from {movie.imdbVotes} users</span></td>
+          <td>
+            <span id="rating">{movie.imdbRating}/10</span> &nbsp;&nbsp;
+            <span>from {movie.imdbVotes} users</span>
+          </td>
         </tr>
       );
     });
@@ -88,27 +94,34 @@ const [filter, setFilter] = useState(
   return (
     <div>
       <div className="checkbox-container">
-         {filters.map((element, index) => {
-           return (
+        {filters.map((element, index) => {
+          return (
             <div>
-              <input value={element} name={element} type="checkbox" checked={filter[index]} onChange={() => handleOnChange(index)} />
+              <input
+                value={element}
+                name={element}
+                type="checkbox"
+                checked={filter[index]}
+                onChange={() => handleOnChange(index)}
+              />
               <label htmlFor={`custom-checkbox-${index}`}>{element}</label>
-           </div>
-         )})}
-       </div>
+            </div>
+          );
+        })}
+      </div>
       <table>
         <tr>
           <th></th>
-          <th id="Title" onClick={onClick}>
+          <th id="Title" onClick={handleOnClick}>
             Title &#x21f5;
           </th>
-          <th id="Year" onClick={onClick}>
+          <th id="Year" onClick={handleOnClick}>
             Year &#x21f5;
           </th>
-          <th id="Type" onClick={onClick}>
+          <th id="Type" onClick={handleOnClick}>
             Type &#x21f5;
           </th>
-          <th id="imdbRating" onClick={onClick}>
+          <th id="imdbRating" onClick={handleOnClick}>
             Rating &#x21f5;
           </th>
         </tr>
