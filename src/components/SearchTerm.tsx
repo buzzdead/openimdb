@@ -8,12 +8,15 @@ interface Props {
 const SearchTerm: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
   const [timer, setTimer] = useState(setTimeout(() => {}, 0));
   const [text, setText] = useState("");
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
-    if (timer) { // Clears timeout every time a new letter is typed.
+    if (timer) {
+      // Clears timeout every time a new letter is typed.
       clearTimeout(timer);
     }
-    setTimer( // Sets a new timer such that searchTerm is updated once there's been 1.5 seconds idletime.
+    setTimer(
+      // Sets a new timer such that searchTerm is updated once there's been 1.5 seconds idletime.
       setTimeout(() => {
         setSearchTerm(event.target.value);
       }, 1500)
