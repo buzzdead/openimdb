@@ -7,14 +7,23 @@ import { IMovieList, IMovie } from "./Types";
 function App() {
   const [movies, setMovies] = useState<IMovieList["movies"]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(1)
+  const [pageList, setPageList] = useState(Array(10).fill(1))
 
   const url = `http://www.omdbapi.com/?apikey=6d684c9&s=${searchTerm}`;
 
   const getMovie = async () => {
     try {
-      const response = await fetch(url).then((response) => response.json());
+      const response = await fetch(`${url}&page=${page}`).then((response) => response.json());
       const movieResponse = response.Search as IMovieList["movies"];
-
+      if(response.totalResults < 100 ){
+        console.log(response.totalResults)
+        var a = Math.ceil(response.totalResults / 10);
+        setPageList(Array(a).fill(1))
+      }
+      if(pageList.length < 10 && response.totalResults >= 100) {
+        setPageList(Array(10).fill(1))
+      }
       /* Iterates through the movies from the search response and
         gets their imdbID to get a response with all the properties */
       const promises = movieResponse.map(async (movie) => {
@@ -41,12 +50,23 @@ function App() {
 
   useEffect(() => {
     getMovie();
-  }, [searchTerm]);
+  }, [searchTerm, page]);
 
   return (
     <div className="App">
       <SearchTerm searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <a onClick ={() => setPage(page % pageList.length + 1)} className="change-page">Next Page &#10143;</a>
       <MovieList movies={movies} setMovies={setMovies} />
+      <div className="pages">
+          {pageList.map((ele, id) => {
+            return (
+              (id + 1) === page ? 
+              <a className="selected-page" onClick={() => setPage(id + 1)}>{id + 1}&thinsp;</a>
+              :
+            <a className="page" onClick={() => setPage(id + 1)}>{id + 1}&thinsp;</a>
+            );
+          })}
+      </div>
     </div>
   );
 }
