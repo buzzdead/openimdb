@@ -46,43 +46,43 @@ table {
   margin-left: 30px;
   width: auto;
   height: auto;
-  border-collapse:separate;
+  border-collapse: separate;
   border-bottom: 2px solid darkslategray;
 }
 
-  
 th {
   border-bottom: 2px solid darkslategray;
   font-weight: normal;
-  text-indent:1em;
-  color:rgb(39, 4, 4);
-  font-size:16px;
-  font-family:Arial, Helvetica, sans-serif;
+  text-indent: 1em;
+  color: rgb(39, 4, 4);
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
   padding-right: 2em;
 }
-  
+
 td {
   text-align: left;
   border-top: 1px solid darkslategray;
   border-bottom: 1px solid darkslategray;
   font-size: 11px;
   font-weight: 650;
-  color:black;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding-left: 1em;
   padding-right: 1em;
   border-right: 1px solid grey;
   border-left: 1px solid grey;
 }
 
-td span{
+td span {
   font-size: 9px;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color:rgb(19, 75, 67);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: rgb(19, 75, 67);
 }
 
 tr:nth-child(even) {
-  background-color:lightgrey;
+  background-color: lightgrey;
 }
 
 .table-header {
@@ -92,18 +92,18 @@ tr:nth-child(even) {
 .poster {
   height: 3em;
   width: 3em;
-  display:block;
+  display: block;
 }
 
 img.poster:hover {
   transform: scale(1.35);
 }
 
-.modal{
+.modal {
   color: blue;
   border-width: 2px;
-  border: rgb(161, 80, 80) 4px;
-  border-radius: 2px;
+  border: solid red 2px;
+  background-color: red;
   position: absolute;
   font-size: 12px;
   padding-left: 40px;
@@ -116,14 +116,14 @@ img.poster:hover {
   margin-top: 25px;
   color: rgb(32, 32, 32);
   font-size: 18px;
-  font-family:'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 #rating {
-  font-family:'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-weight: 600;
   font-size: 12px;
-  text-decoration:aliceblue;
+  text-decoration: aliceblue;
   color: black;
 }
 
@@ -134,18 +134,42 @@ img.poster:hover {
   gap: 1em;
   margin-left: 75px;
   font-weight: 800;
-  font-family:'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .page:hover {
   color: rgb(141, 19, 19);
 }
 .page {
-  
   user-select: none;
   cursor: pointer;
+  word-spacing: 0.1em;
+  font-family: "Courier New", Courier, monospace;
+}
+.selected-page {
+  user-select: none;
+  color: rgb(66, 144, 247);
 }
 .pages {
   display: flex;
   margin-left: 2em;
+}
+
+.change-page {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 900;
+  font-size: 16px;
+  user-select: none;
+  position: absolute;
+  left: 20em;
+  top: 4.05em;
+}
+
+.change-page:hover {
+  color: rgb(141, 19, 19);
+  cursor: pointer;
+}
+
+.q.h1 {
+  top: 0;
 }

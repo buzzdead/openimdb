@@ -55,11 +55,15 @@ function App() {
   return (
     <div className="App">
       <SearchTerm searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <a onClick ={() => setPage(page % pageList.length + 1)} className="change-page">Next Page &#10143;</a>
       <MovieList movies={movies} setMovies={setMovies} />
       <div className="pages">
           {pageList.map((ele, id) => {
             return (
-            <a className="page" onClick={() => setPage(id + 1)}>{id + 1} &thinsp;</a>
+              (id + 1) === page ? 
+              <a className="selected-page" onClick={() => setPage(id + 1)}>{id + 1}&thinsp;</a>
+              :
+            <a className="page" onClick={() => setPage(id + 1)}>{id + 1}&thinsp;</a>
             );
           })}
       </div>
