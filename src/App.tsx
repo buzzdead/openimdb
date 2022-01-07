@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ObjectFlags } from "typescript";
 import "./App.css";
 import MovieList from "./components/MovieList";
 import SearchTerm from "./components/SearchTerm";
@@ -7,14 +8,15 @@ import { IMovieList, IMovie } from "./Types";
 function App() {
   const [movies, setMovies] = useState<IMovieList["movies"]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(1)
+  const [pageList, setPageList] = useState(Array(10).fill(1))
 
   const url = `http://www.omdbapi.com/?apikey=6d684c9&s=${searchTerm}`;
 
   const getMovie = async () => {
     try {
-      const response = await fetch(url).then((response) => response.json());
+      const response = await fetch(`${url}&page=${page}`).then((response) => response.json());
       const movieResponse = response.Search as IMovieList["movies"];
-
       /* Iterates through the movies from the search response and
         gets their imdbID to get a response with all the properties */
       const promises = movieResponse.map(async (movie) => {
@@ -41,12 +43,19 @@ function App() {
 
   useEffect(() => {
     getMovie();
-  }, [searchTerm]);
+  }, [searchTerm, page]);
 
   return (
     <div className="App">
       <SearchTerm searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <MovieList movies={movies} setMovies={setMovies} />
+      <div className="pages">
+          {pageList.map((ele, id) => {
+            return (
+            <a className="page" onClick={() => setPage(id + 1)}>{id + 1} &thinsp;</a>
+            );
+          })}
+      </div>
     </div>
   );
 }

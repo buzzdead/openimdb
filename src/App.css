@@ -132,3 +132,12 @@ img.poster:hover {
   font-weight: 800;
   font-family:'Times New Roman', Times, serif;
 }
+
+.pages {
+  display: flex;
+  margin-left: 2em;
+}
+
+page:hover {
+  color: rgb(141, 19, 19);
+}

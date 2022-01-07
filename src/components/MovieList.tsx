@@ -21,10 +21,10 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
     let sortedMovies;
     let type: "Title" | "Year" | "Type" | "imdbRating" = e.target.id;
       sortedMovies = movies.sort((a, b) => {
-        if (sorted[type] && a[type] > b[type] || !sorted[type] && a[type] < b[type]) {
+        if ((sorted[type] && a[type] > b[type]) || (!sorted[type] && a[type] < b[type])) {
           return -1;
         }
-        if (sorted[type] && a[type] < b[type] || !sorted[type] && a[type] > b[type]){
+        if ((sorted[type] && a[type] < b[type]) || (!sorted[type] && a[type] > b[type])){
           return 1;
         }
         return 0;
