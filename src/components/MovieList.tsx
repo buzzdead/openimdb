@@ -12,17 +12,21 @@ interface Props {
 const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
   const [movieModal, setMovieModal] = useState<IMovieModal>();
   const [filter, setFilter] = useState(new Array(filters.length).fill(true));
-  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>
-  ({x: 0, y: 0,});
+  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({x: 0, y: 0,});;
+  const [modalPos, setModalPos] = useState<{x: number, y:number}>({x: 0, y: 0,});;
+
 
   useEffect(() => {
+  });
+
+
+  const handleMouseOver = (e: IMovieModal | undefined) => {
+    setModalPos({x: 0, y:0})
+    setMousePosition({x: 0, y:0})
     const setPos = (event: MouseEvent) =>
       setMousePosition({ x: event.clientX, y: event.clientY });
     window.addEventListener("mousemove", setPos);
-    return () => window.removeEventListener("mousemove", setPos);
-  });
-
-  const handleMouseOver = (e: IMovieModal | undefined) => {
+    setModalPos({x: mousePosition.x, y: mousePosition.y})
     setMovieModal(e);
   };
 
@@ -145,12 +149,39 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
       {movieModal && (
         <h1
           style={{
-            top: `${mousePosition.y - 35}px`,
-            left: `${mousePosition.x - 35}px`,
+            top: `${modalPos.y - 35}px`,
+            left: `${modalPos.x + 35}px`,
           }}
           className="modal"
         >
-          {movieModal.Title}
+          <img
+              className="modal-poster"
+              src={
+                movieModal.Poster
+                  ? movieModal.Poster
+                  : "https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-1-696x1024.jpg"
+              }
+              alt=""
+            ></img>
+            <div className="modal-stuff">
+              
+             {movieModal.Title}
+             <br></br>
+             <a>Made in:&nbsp;</a>
+          {movieModal.Year}
+          <br></br>
+          <br></br>
+          <a>Starring:</a>
+          <br></br>
+          {movieModal.Actors}
+          <br></br>
+          <br></br>
+          {movieModal.Director !== "N/A" && <div><a>Director: </a> <br></br></div>}
+          {movieModal.Director !== "N/A" && movieModal.Director}
+          <br></br>
+          <br></br>
+          <div className="plot">{movieModal.Plot}</div>
+            </div>
         </h1>
       )}
     </div>

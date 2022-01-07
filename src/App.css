@@ -95,6 +95,11 @@ tr:nth-child(even) {
   display: block;
 }
 
+.modalposter {
+  width: 6em;
+  height: 6em;
+}
+
 img.poster:hover {
   transform: scale(1.35);
 }
@@ -103,11 +108,22 @@ img.poster:hover {
   color: blue;
   border-width: 2px;
   border: solid red 2px;
-  background-color: red;
+  background-color: rgb(158, 94, 83);
   position: absolute;
   font-size: 12px;
-  padding-left: 40px;
+  padding-right: 15%;
   top: 200px;
+}
+
+.modal-stuff{
+  position: absolute;
+  font-family: cursive;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+  max-inline-size: 12.5em;
+  color: black;
+  line-break: auto;
 }
 
 .search-box {
@@ -172,4 +188,8 @@ img.poster:hover {
 
 .q.h1 {
   top: 0;
+}
+
+.plot {
+  font-size:14px;
 }
