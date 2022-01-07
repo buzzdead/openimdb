@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { ObjectFlags } from "typescript";
 import "./App.css";
 import MovieList from "./components/MovieList";
 import SearchTerm from "./components/SearchTerm";
@@ -17,6 +16,14 @@ function App() {
     try {
       const response = await fetch(`${url}&page=${page}`).then((response) => response.json());
       const movieResponse = response.Search as IMovieList["movies"];
+      if(response.totalResults < 100 ){
+        console.log(response.totalResults)
+        var a = Math.ceil(response.totalResults / 10);
+        setPageList(Array(a).fill(1))
+      }
+      if(pageList.length < 10 && response.totalResults >= 100) {
+        setPageList(Array(10).fill(1))
+      }
       /* Iterates through the movies from the search response and
         gets their imdbID to get a response with all the properties */
       const promises = movieResponse.map(async (movie) => {

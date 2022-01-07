@@ -104,16 +104,16 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
         <tbody>
         <tr>
           <th></th>
-          <th id="Title" onClick={handleOnClick}>
+          <th className="table-header" id="Title" onClick={handleOnClick}>
             Title &#x21f5;
           </th>
-          <th id="Year" onClick={handleOnClick}>
+          <th className="table-header" id="Year" onClick={handleOnClick}>
             Year &#x21f5;
           </th>
-          <th id="Type" onClick={handleOnClick}>
+          <th className="table-header" id="Type" onClick={handleOnClick}>
             Type &#x21f5;
           </th>
-          <th id="imdbRating" onClick={handleOnClick}>
+          <th className="table-header" id="imdbRating" onClick={handleOnClick}>
             Rating &#x21f5;
           </th>
         </tr>

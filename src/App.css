@@ -85,6 +85,10 @@ tr:nth-child(even) {
   background-color:lightgrey;
 }
 
+.table-header {
+  cursor: pointer;
+}
+
 .poster {
   height: 3em;
   width: 3em;
@@ -133,11 +137,15 @@ img.poster:hover {
   font-family:'Times New Roman', Times, serif;
 }
 
+.page:hover {
+  color: rgb(141, 19, 19);
+}
+.page {
+  
+  user-select: none;
+  cursor: pointer;
+}
 .pages {
   display: flex;
   margin-left: 2em;
-}
-
-page:hover {
-  color: rgb(141, 19, 19);
 }
