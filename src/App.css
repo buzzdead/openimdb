@@ -37,53 +37,62 @@
   }
 }
 
+body {
+  background-color: rgb(185, 185, 166);
+}
+
 table {
   margin-top: 25px;
   margin-left: 30px;
-  width: 800px;
-  height: 200px;
-  border-collapse: collapse;
-  position: static;
+  width: auto;
+  height: auto;
+  border-collapse:separate;
+  border-bottom: 2px solid darkslategray;
 }
 
   
 th {
   border-bottom: 2px solid darkslategray;
   font-weight: normal;
-  text-align: left;
-  color:darkblue;
+  text-indent:1em;
+  color:rgb(39, 4, 4);
   font-size:16px;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  padding-right: 10px;
+  font-family:Arial, Helvetica, sans-serif;
+  padding-right: 2em;
 }
   
 td {
   text-align: left;
   border-top: 1px solid darkslategray;
   border-bottom: 1px solid darkslategray;
-  font-size: 12px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 650;
+  color:black;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-left: 1em;
+  padding-right: 1em;
+  border-right: 1px solid grey;
+  border-left: 1px solid grey;
 }
 
 td span{
-  font-size: 8px;
+  font-size: 9px;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color:darkgreen;
-  text-decoration:dimgray underline;
+  color:rgb(19, 75, 67);
 }
 
 tr:nth-child(even) {
-  background-color: lightgrey;
+  background-color:lightgrey;
 }
 
 .poster {
-  height: 40px;
-  width: 45px;
+  height: 3em;
+  width: 3em;
   display:block;
 }
 
 img.poster:hover {
-  transform: scale(2);
+  transform: scale(1.35);
 }
 
 .modal{
@@ -93,25 +102,33 @@ img.poster:hover {
   border-radius: 2px;
   position: absolute;
   font-size: 12px;
-  margin-bottom: 120px;
+  padding-left: 40px;
+  top: 200px;
 }
 
 .search-box {
   display: flex;
   margin-left: 80px;
   margin-top: 25px;
+  color: rgb(32, 32, 32);
+  font-size: 18px;
+  font-family:'Times New Roman', Times, serif;
 }
 
 #rating {
-  font-family: cursive;
-  font-weight: 900;
-  font-size: 10px;
+  font-family:'Courier New', Courier, monospace;
+  font-weight: 600;
+  font-size: 12px;
   text-decoration:aliceblue;
   color: black;
 }
 
 .checkbox-container {
   display: flex;
+  color: rgb(32, 32, 32);
   margin-top: 20px;
+  gap: 1em;
   margin-left: 75px;
+  font-weight: 800;
+  font-family:'Times New Roman', Times, serif;
 }

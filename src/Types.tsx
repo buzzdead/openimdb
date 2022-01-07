@@ -29,6 +29,8 @@ export interface IMovieModal {
   Poster: string
   Type: string
   imdbID: string
+  posX: number
+  posY: number
   
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IMovieList, IMovieModal } from "../Types";
 
-let sorted = { Title: false, Year: false, Type: false, imdbRating: false };
+let sorted = { Title: false, Year: true, Type: false, imdbRating: true };
 const filters = ["movie", "game", "series"];
 
 interface Props {
@@ -13,36 +13,25 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
   const [movieModal, setMovieModal] = useState<IMovieModal>();
   const [filter, setFilter] = useState(new Array(filters.length).fill(true));
 
-  const handleMouseOver = (e: any) => {
-    setMovieModal(e as IMovieModal);
+  const handleMouseOver = (e: IMovieModal | undefined) => {
+    setMovieModal(e);
   };
 
   const handleOnClick = (e: any) => {
     let sortedMovies;
     let type: "Title" | "Year" | "Type" | "imdbRating" = e.target.id;
-    if (sorted[type]) {
       sortedMovies = movies.sort((a, b) => {
-        if (a[type] > b[type]) {
+        if (sorted[type] && a[type] > b[type] || !sorted[type] && a[type] < b[type]) {
           return -1;
         }
-        if (a[type] < b[type]) {
+        if (sorted[type] && a[type] < b[type] || !sorted[type] && a[type] > b[type]){
           return 1;
         }
         return 0;
-      });
-    } else {
-      sortedMovies = movies.sort(function (a, b) {
-        if (a[type] < b[type]) {
-          return -1;
-        }
-        if (a[type] > b[type]) {
-          return 1;
-        }
-        return 0;
-      });
-    }
-    sorted[type] = !sorted[type];
-    setMovies([...sortedMovies]);
+
+      })
+      sorted[type] = !sorted[type];
+      setMovies([...sortedMovies]);
   };
 
   const handleOnChange = (pos: number) => {
@@ -65,6 +54,7 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
     return filtered.map((movie, key) => {
       return (
         <tr key={key}>
+          <a href={`https://www.imdb.com/title/${movie.imdbID}/?ref_=fn_al_tt_1`} target="_blank">
           <img
             className="poster"
             src={
@@ -74,9 +64,10 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
             }
             alt=""
           ></img>
+          </a>
           <td
             onMouseLeave={() => handleMouseOver(undefined)}
-            onMouseEnter={() => handleMouseOver(movie)}
+            onMouseEnter={() => handleMouseOver(movie as unknown as IMovieModal)}
           >
             {movie.Title}
           </td>
@@ -110,6 +101,7 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
         })}
       </div>
       <table>
+        <tbody>
         <tr>
           <th></th>
           <th id="Title" onClick={handleOnClick}>
@@ -126,6 +118,7 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
           </th>
         </tr>
         {renderMovieList()}
+        </tbody>
       </table>
       {movieModal && <h1 className="modal">{movieModal.Title}</h1>}
     </div>
