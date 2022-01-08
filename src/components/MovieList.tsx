@@ -16,16 +16,13 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
 
 
   useEffect(() => {
-    const mouseThing = () => {
-      setModalPos({x: 0, y:0})
     const setPos = (event: MouseEvent) =>
       setModalPos({ x: event.clientX, y: event.clientY });
     window.addEventListener("mousemove", setPos);
     return(() => {
       window.removeEventListener("mousemove", setPos)
-    })
-  }
-    })
+    }
+    )})
 
 
   const handleMouseOver = (e: IMovieModal | undefined) => {
