@@ -10,7 +10,7 @@ function App() {
   const [page, setPage] = useState(1)
   const [pageList, setPageList] = useState(Array(10).fill(1))
 
-  const url = `http://www.omdbapi.com/?apikey=6d684c9&s=${searchTerm}`;
+  const url = `http://www.omdbapi.com/?apikey=5657bf65&s=${searchTerm}`;
 
   const getMovie = async () => {
     try {
@@ -28,7 +28,7 @@ function App() {
         gets their imdbID to get a response with all the properties */
       const promises = movieResponse.map(async (movie) => {
         const response = await fetch(
-          `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=6d684c9`
+          `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=5657bf65`
         ).then((response) => response.json());
         const movieRes = response as IMovie;
         // Should probably move this to a utility const\function (some movies don't have a rating)

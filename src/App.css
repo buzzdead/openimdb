@@ -38,7 +38,7 @@
 }
 
 body {
-  background-color: rgb(185, 185, 166);
+  background-color: rgba(255, 166, 0, 0.199)
 }
 
 table {
@@ -105,24 +105,25 @@ img.poster:hover {
 }
 
 .modal {
-  color: blue;
-  border-width: 2px;
-  border: solid red 2px;
-  background-color: rgb(158, 94, 83);
+  background-color: rgb(15, 79, 116);
+  box-shadow: 0px 0px 10px 10px rgba(255, 0, 0, 0.705);
   position: absolute;
-  font-size: 12px;
   padding-right: 15%;
-  top: 200px;
+  border: double 1px transparent;
+  border-radius: 15px;
+  background-image: linear-gradient(white, white), radial-gradient(circle at top left, rgb(85, 115, 252),#8a1c1c);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
 }
 
 .modal-stuff{
   position: absolute;
-  font-family: cursive;
+  font-family:monospace;
   right: 0;
   top: 0;
   font-size: 20px;
-  max-inline-size: 12.5em;
-  color: black;
+  max-inline-size: 14em;
+  color: beige;
   line-break: auto;
 }
 

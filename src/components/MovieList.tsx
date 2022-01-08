@@ -12,22 +12,25 @@ interface Props {
 const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
   const [movieModal, setMovieModal] = useState<IMovieModal>();
   const [filter, setFilter] = useState(new Array(filters.length).fill(true));
-  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({x: 0, y: 0,});;
   const [modalPos, setModalPos] = useState<{x: number, y:number}>({x: 0, y: 0,});;
 
 
   useEffect(() => {
-  });
+    const mouseThing = () => {
+      setModalPos({x: 0, y:0})
+    const setPos = (event: MouseEvent) =>
+      setModalPos({ x: event.clientX, y: event.clientY });
+    window.addEventListener("mousemove", setPos);
+    return(() => {
+      window.removeEventListener("mousemove", setPos)
+    })
+  }
+    })
 
 
   const handleMouseOver = (e: IMovieModal | undefined) => {
-    setModalPos({x: 0, y:0})
-    setMousePosition({x: 0, y:0})
-    const setPos = (event: MouseEvent) =>
-      setMousePosition({ x: event.clientX, y: event.clientY });
-    window.addEventListener("mousemove", setPos);
-    setModalPos({x: mousePosition.x, y: mousePosition.y})
     setMovieModal(e);
+    
   };
 
   const handleOnClick = (e: any) => {
@@ -149,8 +152,8 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
       {movieModal && (
         <h1
           style={{
-            top: `${modalPos.y - 35}px`,
-            left: `${modalPos.x + 35}px`,
+            top: `${modalPos.y - modalPos.y / 2}px`,
+            left: `${modalPos.x + modalPos.x / 2}px`,
           }}
           className="modal"
         >
@@ -164,7 +167,7 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
               alt=""
             ></img>
             <div className="modal-stuff">
-              
+            <br></br>
              {movieModal.Title}
              <br></br>
              <a>Made in:&nbsp;</a>
