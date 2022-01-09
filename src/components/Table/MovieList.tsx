@@ -9,9 +9,11 @@ const filters = ["movie", "game", "series"];
 interface Props {
   movies: IMovieList["movies"];
   setMovies: React.Dispatch<React.SetStateAction<IMovieList["movies"]>>;
+  toggleFavoriteList: boolean;
+  setToggleFavoriteList: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
+const MovieList: React.FC<Props> = ({ movies, setMovies, toggleFavoriteList, setToggleFavoriteList }) => {
   const [movieModal, setMovieModal] = useState<IMovieModal>();
   const [filteredMovies, setFilteredMovies] = useState<IMovieList["movies"]>(
     []
@@ -86,12 +88,21 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
         movies={movies}
         setFilteredMovies={setFilteredMovies}
         favoriteMovies={favoriteMovies}
+        toggleFavoriteList={toggleFavoriteList}
+        setToggleFavoriteList={setToggleFavoriteList}
       />
       <table>
-        <Table
-          filteredMovies={filteredMovies}
-          setFilteredMovies={setFilteredMovies}
+        {toggleFavoriteList ? 
+        <Table 
+          filteredMovies={favoriteMovies}
+          setFilteredMovies={setFavoriteMovies}
         />
+        :
+        <Table 
+          filteredMovies={movies}
+          setFilteredMovies={setMovies}
+        />
+}
         {renderMovieList()}
       </table>
       <Modal
