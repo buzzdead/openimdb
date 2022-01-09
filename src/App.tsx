@@ -71,9 +71,9 @@ function App() {
   return (
     <div className="App">
       <SearchTerm searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <a onClick ={() => setPage(page % pageList.length + 1)} className="change-page">Next Page &#10143;</a>
       <MovieList movies={movies} setMovies={setMovies} toggleFavoriteList={toggleFavoriteList} setToggleFavoriteList={setToggleFavoriteList} />
-      <div className="pages">
+      {toggleFavoriteList ? <div></div> :  <div className="pages">
+      <a onClick ={() => setPage(page % pageList.length + 1)} className="change-page">Next Page &#10143;</a>
           {pageList.map((ele, id) => {
             return (
               (id + 1) === page ? 
@@ -82,7 +82,8 @@ function App() {
             <a className="page" onClick={() => setPage(id + 1)}>{id + 1}&thinsp;</a>
             );
           })}
-      </div>
+      </div>}
+      
     </div>
   );
 }
