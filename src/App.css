@@ -1,6 +1,6 @@
 /* Main page (background & table */
 body {
-  background-color: beige;
+  background-color: rgba(0, 43, 236, 0.048);
   /* background-color: rgba(255, 166, 0, 0.199) */
 }
 
@@ -45,7 +45,7 @@ td span {
 }
 
 tr:nth-child(even) {
-  background-color: lightgrey;
+  background-color: rgba(224, 255, 255, 0.541)
 }
 
 .table-header {
@@ -62,8 +62,8 @@ tr:nth-child(even) {
 .modal-poster {
   position: relative;
   top: 4px;
-  width: 10em;
-  height: 14em;
+  width: 7em;
+  height: 10em;
 }
 
 img.poster:hover {
@@ -73,12 +73,12 @@ img.poster:hover {
 /* modal */
 .modal {
   background-color: rgb(0, 0, 0);
-  box-shadow: 0px 0px 10px 10px rgba(255, 0, 0, 0.705);
+  box-shadow: 0px 0px 10px 10px rgb(0, 0, 0);
   position: absolute;
   padding-right: 9em;
   border: double 10px transparent;
   border-radius: 15px;
-  background-image: linear-gradient(rgba(109, 87, 168, 0.5), rgba(109, 87, 168, 0.5)), radial-gradient(circle at top left, rgb(85, 115, 252),#8a1c1c);
+  background-image: linear-gradient(#003079, #003079), radial-gradient(circle at top left, rgb(85, 115, 252),#003079);
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
@@ -88,10 +88,27 @@ img.poster:hover {
   font-family:monospace;
   right: 0;
   top: 0;
-  font-size: 20px;
-  max-inline-size: 14em;
+  font-size: 16px;
+  max-inline-size: 16em;
+  font-weight: 500;
   color: beige;
   line-break: auto;
+}
+
+p span {
+  color: rgb(253, 15, 15);
+}
+
+.movie-info  {
+  color: rgba(255, 255, 255, 0.705);
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+#title {
+  color: rgb(248, 149, 0);
+  font-weight: 1000;
 }
 
 .plot {
@@ -138,7 +155,7 @@ img.poster:hover {
 }
 .selected-page {
   user-select: none;
-  color: rgb(66, 144, 247);
+  color: rgb(171, 255, 37);
 }
 .pages {
   display: flex;
@@ -156,6 +173,6 @@ img.poster:hover {
 }
 
 .change-page:hover {
-  color: rgb(141, 19, 19);
+  color: rgb(171, 255, 37);
   cursor: pointer;
 }
