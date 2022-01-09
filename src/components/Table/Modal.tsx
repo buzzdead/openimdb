@@ -39,7 +39,7 @@ const Modal: React.FC<Props> = ({movieModal, modalPos, setModalPos}) => {
                 ></img>
                 <div className="modal-stuff">
                  <p><span className="movie-info" id="title">{movieModal.Title}</span></p>
-                 <p><span>Made in:</span>&nbsp; <span className="movie-info">{movieModal.Year}</span></p>
+                 <p><span>Made in: </span><span className="movie-info">{movieModal.Year}</span></p>
               <p><span>Starring: </span> <span className="movie-info"> {movieModal.Actors}</span></p>
               {movieModal.Director !== "N/A" &&<p> <span>Director: </span><span className="movie-info">{movieModal.Director}</span></p>}
               <p><span className="movie-info">{movieModal.Plot}</span></p>
