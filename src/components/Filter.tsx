@@ -53,13 +53,14 @@ const Checkbox: React.FC<Props> = ({movies, setFilteredMovies, favoriteMovies, t
           <div className="checkbox-container">
             {filters.map((element, index) => {
               return (
-                <div onClick={() => handleOnChange(index)}>
+                <div style={{userSelect: `none`}} onClick={() => handleOnChange(index)}>
                   <input
+                  style={{cursor: `pointer`}}
                     value={element}
                     name={element}
                     type="checkbox"
                     checked={filter[index]}/>
-                  <label htmlFor={`custom-checkbox-${index}`}>{element}</label>
+                  <label className="checkbox" htmlFor={`custom-checkbox-${index}`}>{element}</label>
                 </div>
               );
             })}
