@@ -63,7 +63,7 @@ const Checkbox: React.FC<Props> = ({movies, setFilteredMovies, favoriteMovies}) 
               );
             })}
           </div>
-          <button style={{position: `absolute`, left: `31%`, top: `3%`}}onClick={handleOnClick}>{favoriteToggle ? `Search List` : `Favorite List`}</button>
+          <button style={{position: `absolute`, left: `24%`, top: `7%`}}onClick={handleOnClick}>{favoriteToggle ? `Search List` : `Favorite List`}</button>
         </div>
     )}
 
