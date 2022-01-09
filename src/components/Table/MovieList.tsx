@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IMovieList, IMovieModal, IMovie } from "../../Types";
-import Checkbox from "../Checkbox";
+import Filter from "../Filter";
 import Modal from "./Modal";
 import Table from "./Table";
 
@@ -82,7 +82,7 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
 
   return (
     <div>
-      <Checkbox
+      <Filter
         movies={movies}
         setFilteredMovies={setFilteredMovies}
         favoriteMovies={favoriteMovies}
