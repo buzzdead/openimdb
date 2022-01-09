@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {IMovieModal} from '../Types' 
+import {IMovieModal} from '../../Types' 
 
 interface Props {
     movieModal: IMovieModal | undefined

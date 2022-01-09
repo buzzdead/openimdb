@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IMovieList, IMovieModal, IMovie } from "../../Types";
 import Checkbox from "../Checkbox";
-import Modal from "../Modal";
+import Modal from "./Modal";
 import Table from "./Table";
 
 const filters = ["movie", "game", "series"];
