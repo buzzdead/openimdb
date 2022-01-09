@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import MovieList from "./components/MovieList";
+import MovieList from "./components/Table/MovieList";
 import SearchTerm from "./components/SearchTerm";
 import { IMovieList, IMovie } from "./Types";
 
@@ -8,12 +8,27 @@ function App() {
   const [movies, setMovies] = useState<IMovieList["movies"]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1)
-  const [pageList, setPageList] = useState(Array(10).fill(1))
+  const [pageList, setPageList] = useState(Array())
 
   const url = `http://www.omdbapi.com/?apikey=5657bf65&s=${searchTerm}`;
 
   const getMovie = async () => {
     try {
+      if(searchTerm === "") {
+        setPageList(Array(0).fill(0))
+        let a: IMovieList["movies"] = [{Title: "",
+        Metascore: 1,
+        Year: 1,
+        Poster: "",
+        Type: "",
+        imdbID: "",
+        imdbRating: 1,
+        imdbVotes: 1,
+        Actors: "",
+        Director: "",
+        Plot: ""}]
+        setMovies(a)
+      }
       const response = await fetch(`${url}&page=${page}`).then((response) => response.json());
       const movieResponse = response.Search as IMovieList["movies"];
       if(response.totalResults < 100 ){
