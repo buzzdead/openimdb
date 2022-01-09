@@ -29,16 +29,15 @@ const Checkbox: React.FC<Props> = ({movies, setFilteredMovies, favoriteMovies}) 
         });
         let filtered;
         if(favoriteToggle) {
-            filtered = favoriteMovies.filter((ele) => {
+            setFilteredMovies(favoriteMovies.filter((ele) => {
                 if (newFilters.includes(ele.Type)) return ele;
-              });
+              }));
         }
         else {
-        filtered = movies.filter((ele) => {
+        setFilteredMovies(movies.filter((ele) => {
           if (newFilters.includes(ele.Type)) return ele;
-        })};
-        setFilteredMovies(filtered)
-    }, [movies, filter, favoriteToggle])
+        }))}
+    }, [movies, filter, favoriteToggle, (favoriteToggle && favoriteMovies)])
 
     const handleOnChange = (pos: number) => {
         const updatedCheckedState = filter.map((item, index) =>

@@ -13,20 +13,34 @@ interface Props {
 
 const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
   const [movieModal, setMovieModal] = useState<IMovieModal>();
-  const [filteredMovies, setFilteredMovies] = useState<IMovieList["movies"]>([]);
-  const [favoriteMovies, setFavoriteMovies] = useState<IMovieList["movies"]>([]);
-  const [modalPos, setModalPos] = useState<{x: number, y:number}>({x: 0, y: 0,});;
+  const [filteredMovies, setFilteredMovies] = useState<IMovieList["movies"]>(
+    []
+  );
+  const [favoriteMovies, setFavoriteMovies] = useState<IMovieList["movies"]>(
+    []
+  );
+  const [modalPos, setModalPos] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
 
   const handleMouseOver = (e: IMovieModal | undefined) => {
     setMovieModal(e);
   };
 
   const handleOnClick = (movie: IMovie) => {
-    setFavoriteMovies([...favoriteMovies, movie])
-  }
+    if (favoriteMovies.includes(movie)) {
+      setFavoriteMovies([
+        ...favoriteMovies.filter((ele) => {
+          if (ele !== movie) return ele;
+        }),
+      ]);
+    }
+    else
+    setFavoriteMovies([...favoriteMovies, movie]);
+  };
 
   const renderMovieList = (): JSX.Element[] => {
-     
     return filteredMovies.map((movie, key) => {
       return (
         <tr key={key}>
@@ -66,12 +80,25 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
 
   return (
     <div>
-      <Checkbox movies={movies} setFilteredMovies={setFilteredMovies} favoriteMovies={favoriteMovies}/>
+      <Checkbox
+        movies={movies}
+        setFilteredMovies={setFilteredMovies}
+        favoriteMovies={favoriteMovies}
+      />
       <table>
-      <Table filteredMovies={filteredMovies} setFilteredMovies={setFilteredMovies} />
-      {renderMovieList()}
+        <Table
+          filteredMovies={filteredMovies}
+          setFilteredMovies={setFilteredMovies}
+        />
+        {renderMovieList()}
       </table>
-      <Modal movieModal={movieModal} modalPos={modalPos} setModalPos={setModalPos} /> 
-      </div>)}
+      <Modal
+        movieModal={movieModal}
+        modalPos={modalPos}
+        setModalPos={setModalPos}
+      />
+    </div>
+  );
+};
 
 export default MovieList;
