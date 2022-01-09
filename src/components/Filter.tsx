@@ -7,19 +7,20 @@ interface Props {
     movies: IMovieList["movies"];
     setFilteredMovies: React.Dispatch<React.SetStateAction<IMovieList["movies"]>>;
     favoriteMovies: IMovieList["movies"];
+    toggleFavoriteList: boolean;
+   setToggleFavoriteList: React.Dispatch<React.SetStateAction<boolean>>;
   }
 
-const Checkbox: React.FC<Props> = ({movies, setFilteredMovies, favoriteMovies}) => {
+const Checkbox: React.FC<Props> = ({movies, setFilteredMovies, favoriteMovies, toggleFavoriteList, setToggleFavoriteList}) => {
     
     const [filter, setFilter] = useState(new Array(filters.length).fill(true));
-    const [favoriteToggle, setFavoriteToggle] = useState(false)
 
     const handleOnClick = () => {
-        if(!favoriteToggle)
+        if(!toggleFavoriteList)
             setFilteredMovies(favoriteMovies)
         else
             setFilteredMovies(movies)
-        setFavoriteToggle(!favoriteToggle)
+            setToggleFavoriteList(!toggleFavoriteList)
     }
 
     useEffect(() => {
@@ -28,7 +29,7 @@ const Checkbox: React.FC<Props> = ({movies, setFilteredMovies, favoriteMovies}) 
           if (filter[id]) newFilters.push(ele);
         });
         let filtered;
-        if(favoriteToggle) {
+        if(toggleFavoriteList) {
             setFilteredMovies(favoriteMovies.filter((ele) => {
                 if (newFilters.includes(ele.Type)) return ele;
               }));
@@ -37,7 +38,7 @@ const Checkbox: React.FC<Props> = ({movies, setFilteredMovies, favoriteMovies}) 
         setFilteredMovies(movies.filter((ele) => {
           if (newFilters.includes(ele.Type)) return ele;
         }))}
-    }, [movies, filter, favoriteToggle, (favoriteToggle && favoriteMovies)])
+    }, [movies, filter, toggleFavoriteList, (toggleFavoriteList && favoriteMovies)])
 
     const handleOnChange = (pos: number) => {
         const updatedCheckedState = filter.map((item, index) =>
@@ -63,7 +64,7 @@ const Checkbox: React.FC<Props> = ({movies, setFilteredMovies, favoriteMovies}) 
               );
             })}
           </div>
-          <button style={{position: `absolute`, left: `31%`, top: `3%`}}onClick={handleOnClick}>{favoriteToggle ? `Search List` : `Favorite List`}</button>
+          <button style={{position: `absolute`, left: `24%`, top: `7%`}}onClick={handleOnClick}>{toggleFavoriteList ? `Search List` : `Favorite List`}</button>
         </div>
     )}
 

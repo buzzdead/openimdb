@@ -1,46 +1,21 @@
-# Getting Started with Create React App
+# Interactive searching through imdb with ability to store movies in a list.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Various ways to interact:
+#### You can search after a name or part of a name of a movie (i.e Marvel) to return a list of movies matching that search.
 
-In the project directory, you can run:
+#### Hovering over a poster on the left side will show you the link to imdb, clicking it will open a new tab and take you to imdb's page for the movie.
 
-### `npm start`
+#### Clicking any table header will toggle a sort in ascending and descending order.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Toggling off any of the filters (movie, series, game) will filter out that type.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### Hover over a title will show a modal of the movie.
+#### Clicking one of those titles will add it to the Favorite List.
+#### Having already clicked a unique title, clicking it again will remove it from the Favorite List
 
-### `npm test`
+#### Clicking on the "Favorite List" button will display a new table with all movies stored in the Favorite List.
+#### Clicking a movie title in the Favorite List will remove it from the Favorite List.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Clicking on the same button that once said "Favorite List", now "Search List", will return to the original Table with the current search that is active.

@@ -9,6 +9,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1)
   const [pageList, setPageList] = useState(Array())
+  const [toggleFavoriteList, setToggleFavoriteList] = useState(false)
 
   const url = `http://www.omdbapi.com/?apikey=5657bf65&s=${searchTerm}`;
 
@@ -70,9 +71,9 @@ function App() {
   return (
     <div className="App">
       <SearchTerm searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <MovieList movies={movies} setMovies={setMovies} toggleFavoriteList={toggleFavoriteList} setToggleFavoriteList={setToggleFavoriteList} />
+      {toggleFavoriteList ? <div></div> :  <div className="pages">
       <a onClick ={() => setPage(page % pageList.length + 1)} className="change-page">Next Page &#10143;</a>
-      <MovieList movies={movies} setMovies={setMovies} />
-      <div className="pages">
           {pageList.map((ele, id) => {
             return (
               (id + 1) === page ? 
@@ -81,7 +82,8 @@ function App() {
             <a className="page" onClick={() => setPage(id + 1)}>{id + 1}&thinsp;</a>
             );
           })}
-      </div>
+      </div>}
+      
     </div>
   );
 }
