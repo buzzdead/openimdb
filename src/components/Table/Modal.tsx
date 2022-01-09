@@ -31,7 +31,7 @@ const Modal: React.FC<Props> = ({movieModal, modalPos, setModalPos}) => {
               <img
                   className="modal-poster"
                   src={
-                    movieModal.Poster
+                    (movieModal.Poster !== "N/A")
                       ? movieModal.Poster
                       : "https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-1-696x1024.jpg"
                   }

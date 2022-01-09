@@ -54,7 +54,7 @@ const MovieList: React.FC<Props> = ({ movies, setMovies, toggleFavoriteList, set
             <img
               className="poster"
               src={
-                movie.Poster
+                (movie.Poster !== "N/A")
                   ? movie.Poster
                   : "https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-1-696x1024.jpg"
               }
