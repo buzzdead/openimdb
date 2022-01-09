@@ -30,6 +30,7 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
 
   const handleOnClick = (movie: IMovie) => {
     if (favoriteMovies.includes(movie)) {
+      handleMouseOver(undefined)
       setFavoriteMovies([
         ...favoriteMovies.filter((ele) => {
           if (ele !== movie) return ele;
@@ -59,6 +60,7 @@ const MovieList: React.FC<Props> = ({ movies, setMovies }) => {
             ></img>
           </a>
           <td
+            style= {{cursor: `copy`}}
             onClick={() => handleOnClick(movie)}
             onMouseLeave={() => handleMouseOver(undefined)}
             onMouseEnter={() =>
