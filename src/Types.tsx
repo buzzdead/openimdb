@@ -7,6 +7,9 @@ export interface IMovie {
     imdbID: string
     imdbRating: number
     imdbVotes: number
+    Actors: string
+    Director: string
+    Plot: string
     
 }
 
@@ -19,6 +22,9 @@ export interface IMovieModalList {
   Type: string
   imdbID: string
   imdbRating: number
+  Actors: string
+  Director: string
+  Plot: string
   }[]
 }
 
@@ -31,6 +37,9 @@ export interface IMovieModal {
   imdbID: string
   posX: number
   posY: number
+  Actors: string
+  Director: string
+  Plot: string
   
 }
 
@@ -44,5 +53,8 @@ export interface IMovieList {
   imdbID: string
   imdbRating: number
   imdbVotes: number
+  Actors: string
+  Director: string
+  Plot: string
   }[]
 }
